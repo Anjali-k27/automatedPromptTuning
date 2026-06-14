@@ -1,0 +1,3 @@
+streamlit
+dspy-ai
+python-dotenv
