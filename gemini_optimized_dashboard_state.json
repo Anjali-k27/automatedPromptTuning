@@ -1,0 +1,51 @@
+{
+  "extract.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "raw_transcript": "Q3 earnings call. Revenue is $4.2M. Churn decreased to 1.1%. New signups reached 8,000.",
+        "reasoning": "The transcript explicitly states \"Revenue is $4.2M\", \"Churn decreased to 1.1%\", and \"New signups reached 8,000\". These values are directly extracted and converted to the appropriate numerical formats (millions for revenue, decimal for percentage churn, and integer for new signups).",
+        "json_kpis": "{\"revenue\": 4200000, \"churn_rate\": 0.011, \"new_signups\": 8000}"
+      },
+      {
+        "augmented": true,
+        "raw_transcript": "Weekly standup. We saw 400 new signups. Revenue flat at $50k. Churn is 5%.",
+        "reasoning": "The transcript explicitly states \"400 new signups\", \"Revenue flat at $50k\", and \"Churn is 5%\". These values directly map to the required KPIs.\n- new_signups: 400\n- revenue: 50000 (converting $50k to 50000)\n- churn_rate: 5.0 (converting 5% to 5.0 for the percentage value)",
+        "json_kpis": "{\"revenue\": 50000, \"churn_rate\": 5.0, \"new_signups\": 400}"
+      },
+      {
+        "augmented": true,
+        "raw_transcript": "Hey guys so yeah the meeting was good um I think revenue was like 120 thousand. And John said churn is bad right now, hitting 8 percent. Signups? Oh yeah, 50.",
+        "reasoning": "The revenue was explicitly stated as \"120 thousand\". Churn was given as \"8 percent\". New signups were mentioned as \"50\".",
+        "json_kpis": "{\"revenue\": 120000, \"churn_rate\": 0.08, \"new_signups\": 50}"
+      }
+    ],
+    "signature": {
+      "instructions": "Extract structured key performance indicators from raw meeting transcripts.",
+      "fields": [
+        {
+          "prefix": "Raw Transcript:",
+          "description": "The raw text of the daily operations meeting."
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Json Kpis:",
+          "description": "Valid JSON containing exactly: 'revenue', 'churn_rate', and 'new_signups'. Output ONLY JSON."
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "3.2.1",
+      "cloudpickle": "3.1"
+    }
+  }
+}
